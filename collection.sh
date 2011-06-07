@@ -3,6 +3,7 @@
 #------------------------------------------------------------
 # Define Vars
 #------------------------------------------------------------
+vPATH="/var/www/virtual/bf/"
 DOMAIN="domain.tld"
 HASH="kxxpxxd"
 
@@ -10,28 +11,28 @@ HASH="kxxpxxd"
 #------------------------------------------------------------
 # git checkout
 #------------------------------------------------------------
-GIT_WORK_TREE=/var/www/virtual/bf/$HASH.$DOMAIN git checkout -f
+GIT_WORK_TREE=${vPATH}$HASH.$DOMAIN git checkout -f
 
 
 #------------------------------------------------------------
 # Datenbankdump einspielen
 #------------------------------------------------------------
-mysql bf_$HASH </var/www/virtual/bf/$HASH.$DOMAIN/db.sql
+mysql bf_$HASH <${vPATH}$HASH.$DOMAIN/db.sql
 
 
 #------------------------------------------------------------
 # .htaccess RewriteBase aktivieren
 #------------------------------------------------------------
-sed -i 's/#RewriteBase/RewriteBase/g' /var/www/virtual/bf/$HASH.$DOMAIN/.htaccess
+sed -i 's/#RewriteBase/RewriteBase/g' ${vPATH}$HASH.$DOMAIN/.htaccess
 
 
 #------------------------------------------------------------
 # Contao: localconfig.php $websitePath anpassen
 #------------------------------------------------------------
-sed -i 's/\/$HASH//g' /var/www/virtual/bf/$HASH.$DOMAIN/system/config/localconfig.php
+sed -i 's/\/$HASH//g' ${vPATH}$HASH.$DOMAIN/system/config/localconfig.php
 
 
 #------------------------------------------------------------
 # Verzeichnisschutz hinzufügen
 #------------------------------------------------------------
-echo -e '\n\nAuthUserFile /var/www/virtual/bf/.htpasswd\nAuthGroupFile /dev/null\nAuthName "Restricted Area"\nAuthType Basic\n<Limit GET>\nrequire valid-user\n</Limit>' >> /var/www/virtual/bf/$HASH.$DOMAIN/.htaccess
+echo -e '\n\nAuthUserFile ${vPATH}.htpasswd\nAuthGroupFile /dev/null\nAuthName "Restricted Area"\nAuthType Basic\n<Limit GET>\nrequire valid-user\n</Limit>' >> ${vPATH}$HASH.$DOMAIN/.htaccess
