@@ -29,7 +29,7 @@ sed -i 's/#RewriteBase/RewriteBase/g' $vPATH$HASH.$DOMAIN/.htaccess
 #------------------------------------------------------------
 # Contao: localconfig.php $websitePath anpassen
 #------------------------------------------------------------
-sed -i 's/\/$HASH//g' $vPATH$HASH.$DOMAIN/system/config/localconfig.php
+sed -i 's/\/'$HASH'//g' $vPATH$HASH.$DOMAIN/system/config/localconfig.php
 
 
 #------------------------------------------------------------
