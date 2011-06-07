@@ -28,7 +28,7 @@ sed -i 's/#RewriteBase/RewriteBase/g' /var/www/virtual/bf/$HASH.$DOMAIN/.htacces
 #------------------------------------------------------------
 # Contao: localconfig.php $websitePath anpassen
 #------------------------------------------------------------
-sed -i 's/\/wiesauplast//g' /var/www/virtual/bf/$HASH.$DOMAIN/system/config/localconfig.php
+sed -i 's/\/$HASH//g' /var/www/virtual/bf/$HASH.$DOMAIN/system/config/localconfig.php
 
 
 #------------------------------------------------------------
