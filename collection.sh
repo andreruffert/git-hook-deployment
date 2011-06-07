@@ -36,3 +36,10 @@ sed -i 's/\/'$HASH'//g' $vPATH$HASH.$DOMAIN/system/config/localconfig.php
 # Verzeichnisschutz hinzufügen
 #------------------------------------------------------------
 echo -e '\n\nAuthUserFile '$vPATH'.htpasswd\nAuthGroupFile /dev/null\nAuthName "Restricted Area"\nAuthType Basic\n<Limit GET>\nrequire valid-user\n</Limit>' >> $vPATH$HASH.$DOMAIN/.htaccess
+
+
+#------------------------------------------------------------
+# Local! eine mySQL-Dump exportieren (pre-commit)
+#------------------------------------------------------------
+/Applications/MAMP/Library/bin/mysqldump -u root -proot bf_$HASH > ~/Sites/htdocs/$HASH/db.sql
+exit 0
