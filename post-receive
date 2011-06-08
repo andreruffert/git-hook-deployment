@@ -21,24 +21,24 @@ GIT_WORK_TREE=$projectPath git checkout -f
 
 
 #------------------------------------------------------------
-# Datenbankdump einspielen
+# Import DB dump
 #------------------------------------------------------------
 mysql $dbDatabase < $projectPath/db.sql
 
 
 #------------------------------------------------------------
-# .htaccess RewriteBase aktivieren
+# activate .htaccess RewriteBase
 #------------------------------------------------------------
 sed -i 's/#RewriteBase/RewriteBase/g' $projectPath/.htaccess
 
 
 #------------------------------------------------------------
-# Contao: localconfig.php $websitePath anpassen
+# Contao specific: adjust localconfig.php $websitePath
 #------------------------------------------------------------
 sed -i 's/\/'$projectHash'//g' ${projectPath}/system/config/localconfig.php
 
 
 #------------------------------------------------------------
-# Verzeichnisschutz hinzufügen
+# add simple dir protection via .htaccess
 #------------------------------------------------------------
 echo -e '\n\nAuthUserFile '${virtualPath}'.htpasswd\nAuthGroupFile /dev/null\nAuthName "Restricted Area"\nAuthType Basic\n<Limit GET>\nrequire valid-user\n</Limit>' >> ${projectPath}/.htaccess
