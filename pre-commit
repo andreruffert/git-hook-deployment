@@ -3,21 +3,21 @@
 #------------------------------------------------------------
 # Define Vars
 #------------------------------------------------------------
-projectHash="ProjectName"
+projectHash=ProjectName
 
-mysqldumpPath="/Applications/MAMP/Library/bin/"
-projectPath="~/Sites/htdocs/"$projectHash"/"
+mysqldumpPath=/Applications/MAMP/Library/bin/mysqldump
+exportPath=~/Sites/htdocs/$projectHash/db.sql
 
-dbUser="root"
-dbPass="root"
-dbDatabaseSuffix="suffix_"
+dbUser=root
+dbPass=root
+dbDatabaseSuffix=suffix_
 dbDatabase=$dbDatabaseSuffix$projectHash
 
 
 #------------------------------------------------------------
-# export mySQL-Dump
+# mySQL-Dump exportieren
 #------------------------------------------------------------
-$mysqldumpPathmysqldump -u $dbUser -p$dbPass $dbDatabase > $projectPathdb.sql
+$mysqldumpPath -u $dbUser -p$dbPass $dbDatabase > $exportPath
 
 # Exit success
 exit 0
