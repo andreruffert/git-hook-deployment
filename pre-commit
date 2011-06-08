@@ -15,7 +15,7 @@ dbDatabase=$dbDatabaseSuffix$projectHash
 
 
 #------------------------------------------------------------
-# mySQL-Dump exportieren
+# export mySQL-Dump
 #------------------------------------------------------------
 $mysqldumpPath -u $dbUser -p$dbPass $dbDatabase > $exportPath
 
