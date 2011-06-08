@@ -1,0 +1,21 @@
+#!/bin/sh
+
+#------------------------------------------------------------
+# Define Vars
+#------------------------------------------------------------
+projectHash="k43p01d"
+
+mysqldumpPath="/Applications/MAMP/Library/bin/"
+projectPath="~/Sites/htdocs/"${projectHash}
+
+dbUser="root"
+dbPass="root"
+dbDatabaseSuffix="bf_"
+dbDatabase=${dbDatabaseSuffix}${projectHash}
+
+
+#------------------------------------------------------------
+# mySQL-Dump exportieren
+#------------------------------------------------------------
+${mysqldumpPath}mysqldump -u $dbUser -p$dbPass $dbDatabase > ${projectPath}db.sql
+exit 0
