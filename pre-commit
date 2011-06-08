@@ -3,14 +3,14 @@
 #------------------------------------------------------------
 # Define Vars
 #------------------------------------------------------------
-projectHash="k43p01d"
+projectHash="ProjectName"
 
 mysqldumpPath="/Applications/MAMP/Library/bin/"
 projectPath="~/Sites/htdocs/"${projectHash}
 
 dbUser="root"
 dbPass="root"
-dbDatabaseSuffix="bf_"
+dbDatabaseSuffix="suffix_"
 dbDatabase=${dbDatabaseSuffix}${projectHash}
 
 

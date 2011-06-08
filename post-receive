@@ -3,14 +3,14 @@
 #------------------------------------------------------------
 # Define Vars
 #------------------------------------------------------------
-projectHash="k43p01d"
+projectHash="ProjectName"
 
-virtualPath="/var/www/virtual/bf/"
-domain="bnfy.de"
+virtualPath="/var/www/virtual/user/"
+domain="domain.tld"
 
 projectFolderName=${projectHash}.${domain}
 
-dbDatabaseSuffix="bf_"
+dbDatabaseSuffix="suffix_"
 dbDatabase=${dbDatabaseSuffix}${projectHash}
 
 #------------------------------------------------------------
