@@ -3,42 +3,42 @@
 #------------------------------------------------------------
 # Define Vars
 #------------------------------------------------------------
-projectHash="ProjectName"
+projectHash=ProjectName
 
-virtualPath="/var/www/virtual/user/"
-domain="domain.tld"
+virtualPath=/var/www/virtual/user/
+domain=domain.tld
 
-projectFolderName=$projectHash"."$domain
+projectPath=$virtualPath${projectHash}.${domain}
 
-dbDatabaseSuffix="suffix_"
+dbDatabaseSuffix=suffix_
 dbDatabase=$dbDatabaseSuffix$projectHash
 
 
 #------------------------------------------------------------
 # git checkout
 #------------------------------------------------------------
-GIT_WORK_TREE=$virtualPath$projectFolderName git checkout -f
+GIT_WORK_TREE=$projectPath git checkout -f
 
 
 #------------------------------------------------------------
 # Datenbankdump einspielen
 #------------------------------------------------------------
-mysql $dbDatabase <$virtualPath$projectFolderName/db.sql
+mysql $dbDatabase < $projectPath/db.sql
 
 
 #------------------------------------------------------------
 # .htaccess RewriteBase aktivieren
 #------------------------------------------------------------
-sed -i 's/#RewriteBase/RewriteBase/g' $virtualPath$projectFolderName/.htaccess
+sed -i 's/#RewriteBase/RewriteBase/g' $projectPath/.htaccess
 
 
 #------------------------------------------------------------
 # Contao: localconfig.php $websitePath anpassen
 #------------------------------------------------------------
-sed -i 's/\/'$projectHash'//g' $virtualPath$projectFolderName/system/config/localconfig.php
+sed -i 's/\/'$projectHash'//g' ${projectPath}/system/config/localconfig.php
 
 
 #------------------------------------------------------------
 # Verzeichnisschutz hinzufügen
 #------------------------------------------------------------
-echo -e '\n\nAuthUserFile '$virtualPath'.htpasswd\nAuthGroupFile /dev/null\nAuthName "Restricted Area"\nAuthType Basic\n<Limit GET>\nrequire valid-user\n</Limit>' >> $virtualPath$projectFolderName/.htaccess
+echo -e '\n\nAuthUserFile '${virtualPath}'.htpasswd\nAuthGroupFile /dev/null\nAuthName "Restricted Area"\nAuthType Basic\n<Limit GET>\nrequire valid-user\n</Limit>' >> ${projectPath}/.htaccess
