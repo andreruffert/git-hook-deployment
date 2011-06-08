@@ -1,8 +1,8 @@
 #!/bin/sh
 
-#------------------------------------------------------------
+#--------------------------------------------------------------------------
 # Define Vars
-#------------------------------------------------------------
+#--------------------------------------------------------------------------
 projectHash="ProjectName"
 
 virtualPath="/var/www/virtual/user/"
@@ -14,31 +14,31 @@ dbDatabaseSuffix="suffix_"
 dbDatabase=$dbDatabaseSuffix$projectHash
 
 
-#------------------------------------------------------------
+#--------------------------------------------------------------------------
 # git checkout
-#------------------------------------------------------------
+#--------------------------------------------------------------------------
 GIT_WORK_TREE=$virtualPath$projectFolderName git checkout -f
 
 
-#------------------------------------------------------------
-# Datenbankdump einspielen
-#------------------------------------------------------------
+#--------------------------------------------------------------------------
+# Import DB dump
+#--------------------------------------------------------------------------
 mysql $dbDatabase <$virtualPath$projectFolderName/db.sql
 
 
-#------------------------------------------------------------
-# .htaccess RewriteBase aktivieren
-#------------------------------------------------------------
+#--------------------------------------------------------------------------
+# activate .htaccess RewriteBase
+#--------------------------------------------------------------------------
 sed -i 's/#RewriteBase/RewriteBase/g' $virtualPath$projectFolderName/.htaccess
 
 
-#------------------------------------------------------------
-# Contao: localconfig.php $websitePath anpassen
-#------------------------------------------------------------
+#--------------------------------------------------------------------------
+# Contao (http://contao.org) specific: change localconfig.php $websitePath
+#--------------------------------------------------------------------------
 sed -i 's/\/'$projectHash'//g' $virtualPath$projectFolderName/system/config/localconfig.php
 
 
-#------------------------------------------------------------
-# Verzeichnisschutz hinzufügen
-#------------------------------------------------------------
+#--------------------------------------------------------------------------
+# Add a simple dir protection via .htaccess
+#--------------------------------------------------------------------------
 echo -e '\n\nAuthUserFile '$virtualPath'.htpasswd\nAuthGroupFile /dev/null\nAuthName "Restricted Area"\nAuthType Basic\n<Limit GET>\nrequire valid-user\n</Limit>' >> $virtualPath$projectFolderName/.htaccess
