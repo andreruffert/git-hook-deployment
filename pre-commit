@@ -6,16 +6,18 @@
 projectHash="ProjectName"
 
 mysqldumpPath="/Applications/MAMP/Library/bin/"
-projectPath="~/Sites/htdocs/"${projectHash}
+projectPath="~/Sites/htdocs/"$projectHash"/"
 
 dbUser="root"
 dbPass="root"
 dbDatabaseSuffix="suffix_"
-dbDatabase=${dbDatabaseSuffix}${projectHash}
+dbDatabase=$dbDatabaseSuffix$projectHash
 
 
 #------------------------------------------------------------
 # mySQL-Dump exportieren
 #------------------------------------------------------------
-${mysqldumpPath}mysqldump -u $dbUser -p$dbPass $dbDatabase > ${projectPath}db.sql
+$mysqldumpPathmysqldump -u $dbUser -p$dbPass $dbDatabase > $projectPathdb.sql
+
+# Exit success
 exit 0
