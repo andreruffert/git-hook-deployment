@@ -18,27 +18,29 @@ dbDatabase=$dbDatabaseSuffix$projectHash
 # git checkout
 #------------------------------------------------------------
 GIT_WORK_TREE=$projectPath git checkout -f
-
+echo "Git checkout done."
 
 #------------------------------------------------------------
 # Import DB dump
 #------------------------------------------------------------
+echo "Copying DB now..."
 mysql $dbDatabase < $projectPath/db.sql
-
+echo "DB copy done."
 
 #------------------------------------------------------------
 # activate .htaccess RewriteBase
 #------------------------------------------------------------
 sed -i 's/#RewriteBase/RewriteBase/g' $projectPath/.htaccess
-
+echo ".htaccess RewriteBase activated."
 
 #------------------------------------------------------------
 # Contao specific: adjust localconfig.php $websitePath
 #------------------------------------------------------------
 sed -i 's/\/'$projectHash'//g' ${projectPath}/system/config/localconfig.php
-
+echo "Contao specific localconfig adaptations done."
 
 #------------------------------------------------------------
 # add simple dir protection via .htaccess
 #------------------------------------------------------------
 echo -e '\n\nAuthUserFile '${virtualPath}'.htpasswd\nAuthGroupFile /dev/null\nAuthName "Restricted Area"\nAuthType Basic\n<Limit GET>\nrequire valid-user\n</Limit>' >> ${projectPath}/.htaccess
+echo ".htaccess dir protection activated."
