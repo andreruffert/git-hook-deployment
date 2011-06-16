@@ -8,10 +8,10 @@ projectHash=ProjectName
 virtualPath=/var/www/virtual/user/
 domain=domain.tld
 
-projectPath=$virtualPath${projectHash}.${domain}
+projectPath=$virtualPath${projectHash}-dev.${domain}
 
 dbDatabaseSuffix=suffix_
-dbDatabase=$dbDatabaseSuffix$projectHash
+dbDatabase=$dbDatabaseSuffix${projectHash}d
 
 
 #------------------------------------------------------------

@@ -11,7 +11,7 @@ exportPath=~/Sites/htdocs/$projectHash/db.sql
 dbUser=root
 dbPass=root
 dbDatabaseSuffix=suffix_
-dbDatabase=$dbDatabaseSuffix$projectHash
+dbDatabase=$dbDatabaseSuffix${projectHash}d
 
 
 #------------------------------------------------------------
