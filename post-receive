@@ -13,6 +13,10 @@ projectPath=$virtualPath${projectHash}-dev.${domain}
 dbDatabaseSuffix=suffix_
 dbDatabase=$dbDatabaseSuffix${projectHash}d
 
+#------------------------------------------------------------
+# mkdir if not exists
+#------------------------------------------------------------
+mkdir -p $projectPath
 
 #------------------------------------------------------------
 # git checkout
