@@ -1,4 +1,4 @@
-#Git hook scripts
+#Git hook deployment
 
 ![](http://ryanflorence.com/deploying-websites-with-a-tiny-git-hook/image.jpg "")
 
